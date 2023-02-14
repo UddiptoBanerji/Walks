@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using WalksAPI.Data;
+using WalksAPI.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<WalksDbContext>(options=>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Walks"));
 });
+builder.Services.AddScoped<IRegionRepository, RegionRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
